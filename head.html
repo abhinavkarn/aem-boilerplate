@@ -1,4 +1,35 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <script src="/scripts/aem.js" type="module"></script>
 <script src="/scripts/scripts.js" type="module"></script>
+<script type="importmap">
+    {
+      "imports": {
+        "@google/generative-ai": "https://esm.run/@google/generative-ai"
+      }
+    }
+</script>
+<script type="module">
+    import { GoogleGenerativeAI } from "@google/generative-ai";
+
+    // Fetch your API_KEY
+    const API_KEY = "AIzaSyDiLLehJXY7hQ-25vJuibkZ9TzFsIjMNRg";
+    // Reminder: This should only be for local testing
+
+    // Access your API key (see "Set up your API key" above)
+    const genAI = new GoogleGenerativeAI(API_KEY);
+
+    // The Gemini 1.5 models are versatile and work with most use cases
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+    async function run() {
+      const prompt = "Write a story about a magic backpack.";
+
+      const result = await model.generateContent(prompt);
+      const response = await result.response;
+      const text = response.text();
+      console.log(text);
+    }
+
+    run();
+</script>
 <link rel="stylesheet" href="/styles/styles.css"/>
