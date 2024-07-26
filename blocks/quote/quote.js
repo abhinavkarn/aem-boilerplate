@@ -23,7 +23,7 @@ export default async function decorate(block) {
   }
 
   async function run() {
-    const prompt = "Give a Quote by - " + attribution.innerHTML;
+    let prompt = 'Give a Quote by' -  + attribution.innerHTML;
     const result = await geminiModel.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
@@ -33,12 +33,11 @@ export default async function decorate(block) {
   run();
 
   // decorate quotation
-    quotation.className = 'quote-quotation';
-    if (!hasWrapper(quotation)) {
-      quotation.innerHTML = `<p>${quotation.innerHTML}</p>`;
-    }
-    blockquote.append(quotation);
-
+  quotation.className = 'quote-quotation';
+  if (!hasWrapper(quotation)) {
+    quotation.innerHTML = `<p>${quotation.innerHTML}</p>`;
+  }
+  blockquote.append(quotation);
   block.innerHTML = '';
   block.append(blockquote);
 }
