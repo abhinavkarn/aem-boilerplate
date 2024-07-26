@@ -42,27 +42,3 @@ export default async function decorate(block) {
   block.innerHTML = '';
   block.append(blockquote);
 }
-
-
-
-
-    // Fetch your API_KEY
-
-    // Reminder: This should only be for local testing
-
-    // Access your API key (see "Set up your API key" above)
-
-
-    // The Gemini 1.5 models are versatile and work with most use cases
-
-
-    async function run() {
-      const prompt = "Write a story about a magic backpack.";
-
-      const result = await model.generateContent(prompt);
-      const response = await result.response;
-      const text = response.text();
-      console.log(text);
-    }
-
-    run();
