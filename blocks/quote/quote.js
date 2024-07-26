@@ -23,7 +23,7 @@ export default async function decorate(block) {
   }
 
   async function run() {
-    const prompt = 'Give a Quote by -' + attribution.innerHTML;
+    const prompt = 'Give a Quote by -' + attribution.innerText.split(",")[1].trim();
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
