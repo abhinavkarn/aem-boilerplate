@@ -23,8 +23,8 @@ export default async function decorate(block) {
   }
 
   async function run() {
-    let prompt = 'Give a Quote by' -  + attribution.innerHTML;
-    const result = await geminiModel.generateContent(prompt);
+    const prompt = 'Give a Quote by -' + attribution.innerHTML;
+    const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
     console.log(text);
