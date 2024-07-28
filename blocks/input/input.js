@@ -50,5 +50,5 @@ export default async function decorate(block) {
   runConversation(msg);
 
   const getInputBox = document.getElementById("message");
-  getInputBox.addEventListener("click", handleKeyPress(e));
+  getInputBox.addEventListener("click", handleKeyPress);
 }
