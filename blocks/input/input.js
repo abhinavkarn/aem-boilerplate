@@ -19,7 +19,6 @@ export default async function decorate(block) {
     inputBlock.setAttribute('type', 'text');
     inputBlock.setAttribute('id', 'message');
     inputBlock.setAttribute('value', 'Enter your Query');
-    inputBlock.setAttribute('onkeypress', 'handleKeyPress(event)');
     block.append(inputBlock);
   }
 
@@ -49,4 +48,7 @@ export default async function decorate(block) {
 
   window.runConversation = runConversation;
   runConversation(msg);
+
+  const getInputBox = document.getElementById("message");
+  getInputBox.addEventListener("click", handleKeyPress(e));
 }
