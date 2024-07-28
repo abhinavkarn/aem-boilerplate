@@ -1,5 +1,13 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
+function handleKeyPress(e){
+  if(e.keyCode === 13){
+    e.preventDefault();
+    newMsg = document.getElementById("message").value;
+    runConversation(newMsg);
+  }
+}
+
 export default async function decorate(block) {
 
   const API_KEY = "AIzaSyDiLLehJXY7hQ-25vJuibkZ9TzFsIjMNRg";
@@ -40,15 +48,5 @@ export default async function decorate(block) {
   }
 
   window.runConversation = runConversation;
-
   runConversation(msg);
-
-  function handleKeyPress (e){
-    if(e.keyCode === 13){
-      e.preventDefault();
-      newMsg = document.getElementById("message").value;
-      runConversation(newMsg);
-    }
-  }
-
 }
