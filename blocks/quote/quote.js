@@ -18,11 +18,11 @@ export default async function decorate(block) {
   async function run() {
     let promptVal = 'Give a Quote by ';
     const prompt =  promptVal + attribution.innerText.split(',')[1].trim();
-    console.log('prompt - ' + prompt);
+    //console.log('prompt - ' + prompt);
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const finalQuote = response.text().replaceAll('"','');
-    console.log('finalQuote - ' + finalQuote);
+    //console.log('finalQuote - ' + finalQuote);
 
     quotation.className = 'quote-quotation';
     if (!hasWrapper(quotation)) {

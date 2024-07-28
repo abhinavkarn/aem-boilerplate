@@ -1,10 +1,16 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 function handleKeyPress(e){
-  if(e.keyCode === 13){
+  if(e.code == 'Enter'){
     e.preventDefault();
-    newMsg = document.getElementById("message").value;
+    const newMsg = document.getElementById("message").value;
+    const logBlock = document.getElementById("log");
+    const linebreak = document.createElement("br");
+    logBlock.appendChild(linebreak);
+    logBlock.append("Query: " + newMsg);
     runConversation(newMsg);
+    const getInputBox = document.getElementById("message");
+    getInputBox.value = '';
   }
 }
 
@@ -15,6 +21,10 @@ export default async function decorate(block) {
   const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
   if (block.className.includes("input")){
+    let log = document.createElement("p");
+    log.setAttribute('id', 'log');
+    block.append(log);
+
     let inputBlock = document.createElement("input");
     inputBlock.setAttribute('type', 'text');
     inputBlock.setAttribute('id', 'message');
@@ -22,17 +32,14 @@ export default async function decorate(block) {
     block.append(inputBlock);
   }
 
-  const msg = "I would like to know about Tesla Model 5?";
+  const msg = "I would like to know about Tesla Model 3?";
+  const logBlock = document.getElementById("log");
+  const linebreak = document.createElement("br");
+  logBlock.appendChild(linebreak);
+  logBlock.append("Query: " + msg);
   const chat = model.startChat({
     history: [
-      {
-        role: "user",
-        parts: [{ text: "Hello, I would like to buy a Car." }],
-      },
-      {
-        role: "model",
-        parts: [{ text: "Great! What would you like to know?" }],
-      },
+
     ],
     generationConfig: {
       maxOutputTokens: 100,
@@ -43,6 +50,10 @@ export default async function decorate(block) {
     const result = await chat.sendMessage(newText);
     const response = await result.response;
     const text = response.text();
+    const logBlock = document.getElementById("log");
+    const linebreak = document.createElement("br");
+    logBlock.appendChild(linebreak);
+    logBlock.append("Response: " + text);
     console.log(text);
   }
 
@@ -50,5 +61,5 @@ export default async function decorate(block) {
   runConversation(msg);
 
   const getInputBox = document.getElementById("message");
-  getInputBox.addEventListener("click", handleKeyPress);
+  getInputBox.addEventListener("keyup", handleKeyPress);
 }
