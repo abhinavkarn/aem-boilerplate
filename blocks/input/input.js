@@ -1,14 +1,14 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-function handleKeyPress(e){
-  if (e.code === 'Enter'){
+function handleKeyPress(e) {
+  if (e.code === 'Enter') {
     e.preventDefault();
     const newMsg = document.getElementById('message').value;
     const logBlock = document.getElementById('log');
     const linebreak = document.createElement('br');
     logBlock.appendChild(linebreak);
-    logBlock.append('Query: ' + newMsg);
-    runConversation(newMsg);
+    logBlock.append(`Query: ${newMsg}`);
+    window.runConversation(newMsg);
     const getInputBox = document.getElementById('message');
     getInputBox.value = '';
   }
@@ -36,11 +36,9 @@ export default async function decorate(block) {
   const logBlock = document.getElementById('log');
   const linebreak = document.createElement('br');
   logBlock.appendChild(linebreak);
-  logBlock.append('Query: ' + msg);
+  logBlock.append(`Query: ${msg}`);
   const chat = model.startChat({
-    history: [
-
-    ],
+    history: [],
     generationConfig: {
       maxOutputTokens: 100,
     },
@@ -53,7 +51,7 @@ export default async function decorate(block) {
     const logBlock = document.getElementById('log');
     const linebreak = document.createElement('br');
     logBlock.appendChild(linebreak);
-    logBlock.append('Response: ' + text);
+    logBlock.append(`Response: ${text}`);
     //console.log(text);
   }
 
