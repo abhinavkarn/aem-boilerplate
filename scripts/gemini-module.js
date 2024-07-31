@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from 'https://cdn.jsdelivr.net/npm/@google/generative-ai/+esm';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const API_KEY = 'AIzaSyDiLLehJXY7hQ-25vJuibkZ9TzFsIjMNRg';
 const genAI = new GoogleGenerativeAI(API_KEY);
