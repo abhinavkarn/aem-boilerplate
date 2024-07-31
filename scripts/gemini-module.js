@@ -13,5 +13,5 @@ const chat = model.startChat({
 
 export {
   chat,
-  model
+  model,
 };

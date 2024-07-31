@@ -8,13 +8,11 @@ export default async function decorate(block) {
   const [quotation, attribution] = [...block.children].map((c) => c.firstElementChild);
   const blockquote = document.createElement('blockquote');
 
-  let finalQuote = '';
   async function run() {
-    let promptVal = 'Give a Quote by ';
-    const prompt =  promptVal + attribution.innerText.split(',')[1].trim();
+    const prompt = `Give a Quote by ${attribution.innerText.split(',')[1].trim()}`;
     const result = await model.generateContent(prompt);
     const response = await result.response;
-    const finalQuote = response.text().replaceAll('"','');
+    const finalQuote = response.text().replaceAll('"', '');
     quotation.className = 'quote-quotation';
     if (!hasWrapper(quotation)) {
       quotation.innerHTML = `<p>${finalQuote}</p>`;
