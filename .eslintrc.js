@@ -17,6 +17,6 @@ module.exports = {
     'import/extensions': ['error', {
       js: 'always',
     }],
-    "import/no-unresolved": "off",
+    'import/no-unresolved': 'off',
   },
 };
