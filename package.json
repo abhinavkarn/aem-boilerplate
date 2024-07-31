@@ -27,5 +27,8 @@
     "eslint-plugin-import": "2.29.1",
     "stylelint": "16.2.1",
     "stylelint-config-standard": "36.0.0"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
   }
 }
