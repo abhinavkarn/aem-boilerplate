@@ -1,14 +1,4 @@
-import { GoogleGenerativeAI } from '@google/generative-ai';
-
-const API_KEY = 'AIzaSyDiLLehJXY7hQ-25vJuibkZ9TzFsIjMNRg';
-const genAI = new GoogleGenerativeAI(API_KEY);
-const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-const chat = model.startChat({
-  history: [],
-  generationConfig: {
-    maxOutputTokens: 100,
-  },
-});
+import { chat } from '../../scripts/gemini-module.js';
 
 async function runConversation(query) {
   const logBlock = document.getElementById('log');

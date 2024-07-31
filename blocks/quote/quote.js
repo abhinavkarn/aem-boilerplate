@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import { model } from '../../scripts/gemini-module.js';
 
 function hasWrapper(el) {
   return !!el.firstElementChild && window.getComputedStyle(el.firstElementChild).display === 'block';
@@ -8,22 +8,13 @@ export default async function decorate(block) {
   const [quotation, attribution] = [...block.children].map((c) => c.firstElementChild);
   const blockquote = document.createElement('blockquote');
 
-  const API_KEY = "AIzaSyDiLLehJXY7hQ-25vJuibkZ9TzFsIjMNRg";
-  // Access your API key (see "Set up your API key" above)
-  const genAI = new GoogleGenerativeAI(API_KEY);
-  // The Gemini 1.5 models are versatile and work with most use cases
-  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-
   let finalQuote = '';
   async function run() {
     let promptVal = 'Give a Quote by ';
     const prompt =  promptVal + attribution.innerText.split(',')[1].trim();
-    //console.log('prompt - ' + prompt);
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const finalQuote = response.text().replaceAll('"','');
-    //console.log('finalQuote - ' + finalQuote);
-
     quotation.className = 'quote-quotation';
     if (!hasWrapper(quotation)) {
       quotation.innerHTML = `<p>${finalQuote}</p>`;
