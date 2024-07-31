@@ -26,10 +26,10 @@ function handleKeyPress(e) {
 
 export default async function decorate(block) {
   if (block.className.includes('input')) {
-    let log = document.createElement('p');
+    const log = document.createElement('p');
     log.setAttribute('id', 'log');
     block.append(log);
-    let inputBlock = document.createElement('input');
+    const inputBlock = document.createElement('input');
     inputBlock.setAttribute('type', 'text');
     inputBlock.setAttribute('id', 'message');
     inputBlock.setAttribute('value', 'Enter your Query');
